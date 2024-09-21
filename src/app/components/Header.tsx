@@ -32,7 +32,7 @@ export default async function Header() {
                             </>
                         )
                     }
-                    <Link href={'/post-new-job'} className="p-2 rounded bg-orange-600 hover:bg-orange-500 text-white">Post a Job</Link>
+                    <Link href={'/create-job-post'} className="p-2 rounded bg-orange-600 hover:bg-orange-500 text-white">Post a Job</Link>
                 </nav>
             </div>
         </header>
