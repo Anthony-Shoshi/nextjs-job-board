@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import '@radix-ui/themes/styles.css';
 import Header from "./components/Header";
 import { AuthKitProvider } from '@workos-inc/authkit-nextjs';
 
