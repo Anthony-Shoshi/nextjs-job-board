@@ -10,6 +10,7 @@ import {
     StateSelect
 } from "react-country-state-city";
 import "react-country-state-city/dist/react-country-state-city.css";
+import ImageUpload from "./ImageUpload";
 
 export default function JobForm() {
 
@@ -24,24 +25,14 @@ export default function JobForm() {
                 <div className="flex gap-8">
                     <div>
                         <h3>Job Icon</h3>
-                        <div className="bg-gray-100 size-24 flex items-center justify-center">
-                            <FontAwesomeIcon color="gray" icon={faStar}></FontAwesomeIcon>
-                        </div>
-                        <div className="mt-4 justify-center">
-                            <Button variant="soft">Select file</Button>
-                        </div>
+                        <ImageUpload icon={faStar} />
                     </div>
 
                     <div className="grow">
                         <h3>Contact Person</h3>
                         <div className="flex gap-8">
                             <div>
-                                <div className="bg-gray-100 size-24 flex items-center justify-center">
-                                    <FontAwesomeIcon color="gray" icon={faUser}></FontAwesomeIcon>
-                                </div>
-                                <div className="mt-4 justify-center">
-                                    <Button variant="soft">Select file</Button>
-                                </div>
+                                <ImageUpload icon={faUser} />
                             </div>
                             <div className="grow flex flex-col gap-2">
                                 <TextField.Root placeholder="John Doe">
@@ -95,14 +86,14 @@ export default function JobForm() {
                 <h3>Location</h3>
                 <div className="flex gap-2 *:grow">
                     <CountrySelect
-                        onChange={(e) => {
+                        onChange={(e: any) => {
                             setCountryid(e.id);
                         }}
                         placeHolder="Select Country"
                     />
                     <StateSelect
                         countryid={countryid}
-                        onChange={(e) => {
+                        onChange={(e: any) => {
                             setstateid(e.id);
                         }}
                         placeHolder="Select State"
@@ -110,12 +101,12 @@ export default function JobForm() {
                     <CitySelect
                         countryid={countryid}
                         stateid={stateid}
-                        onChange={(e) => {
+                        onChange={(e: any) => {
                             console.log(e);
                         }}
                         placeHolder="Select City"
                     />
-                </div>                
+                </div>
 
                 <TextArea placeholder="Job Description" resize={"vertical"}></TextArea>
 
