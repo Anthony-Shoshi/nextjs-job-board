@@ -5,17 +5,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Button } from "@radix-ui/themes";
 import axios from "axios";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { ChangeEvent, useRef, useState } from "react";
 
-export default function ImageUpload({ icon }: { icon: IconDefinition }) {
+export default function ImageUpload({ name, icon }: { name: string, icon: IconDefinition }) {
 
     const fileInputRef = useRef(null);
     const [url, setUrl] = useState('');
     const [isLoading, setIsLoading] = useState(false);
+    const [isImageLoading, setIsImageLoading] = useState(false);
 
-    async function upload(ev: Event) {
+    async function upload(ev: ChangeEvent<HTMLInputElement>) {
 
-        const input = ev.target as HTMLInputElement;
+        const input = ev.target;
         if (input && input.files?.length && input.files.length > 0) {
             setIsLoading(true);
             const file = input.files[0];
@@ -25,21 +26,24 @@ export default function ImageUpload({ icon }: { icon: IconDefinition }) {
             if (response.data.url) {
                 setUrl(response.data.url);
                 setIsLoading(false);
+                setIsImageLoading(true);
             }
         }
     }
 
     return (
         <>
+            <input type="hidden" name={name} value={url} />
             <div className="bg-gray-100 size-24 flex items-center justify-center">
-                {isLoading && (
+                {(isLoading || isImageLoading) && (
                     <FontAwesomeIcon className="text-grey-400 animate-spin" icon={faSpinner} />
                 )}
-                {!isLoading && url && (
+                {(!isLoading) && url && (
                     <Image src={url}
                         alt={'image url'}
                         width={1024}
                         height={1024}
+                        onLoadingComplete={() => setIsImageLoading(false)}
                         className="w-auto h-auto max-w-24 max-h-24" />
                 )}
                 {!isLoading && !url && (
@@ -50,7 +54,7 @@ export default function ImageUpload({ icon }: { icon: IconDefinition }) {
                 <input
                     type="file"
                     ref={fileInputRef}
-                    onChange={upload}
+                    onChange={ev => upload(ev)}
                     hidden />
                 <Button
                     type="button"

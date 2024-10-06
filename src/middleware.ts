@@ -9,6 +9,7 @@ export const config = {
         '/',
         '/create-job-post',
         '/create-company',
-        '/create-company/:orgId*'
+        '/create-company/:orgId*',
+        '/job/:orgId*'
     ]
 };

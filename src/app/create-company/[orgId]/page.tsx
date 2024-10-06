@@ -21,10 +21,10 @@ export default async function CreateJob(props: PageProps) {
         );
     }
 
-    const ordId = props.params.orgId;
+    const orgId = props.params.orgId;
     const oms = workOs.userManagement.listOrganizationMemberships({
         userId: user.id,
-        organizationId: ordId
+        organizationId: orgId
     })
 
     const hasAccess = (await oms).data.length > 0
@@ -38,6 +38,6 @@ export default async function CreateJob(props: PageProps) {
     }
 
     return (
-        <JobForm />
+        <JobForm orgId={orgId} />
     );
 }
