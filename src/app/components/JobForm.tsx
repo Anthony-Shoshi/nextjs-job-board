@@ -26,7 +26,7 @@ export default function JobForm({ orgId }: { orgId: string }) {
         data.set('countryName', countryName);
         data.set('stateName', stateName);
         data.set('cityName', cityName);
-        data.set('ordId', orgId);
+        data.set('orgId', orgId);
         const jobDoc = await saveJobPost(data);
         console.log(jobDoc);
         redirect(`/job/${orgId}`);

@@ -1,5 +1,23 @@
 import { model, models, Schema } from "mongoose";
 
+export type Job = {
+    _id: string,
+    title: string,
+    jobIcon: string,
+    contactPersonImg: string,
+    name: string,
+    phone: string,
+    email: string,
+    remote: string,
+    orgId: string,
+    countryName: string,
+    stateName: string,
+    cityName: string,
+    fullTime: string,
+    salary: number,
+    description: string
+}
+
 const JobSchema = new Schema({
     title: { type: String, required: true },
     jobIcon: { type: String },
@@ -15,6 +33,8 @@ const JobSchema = new Schema({
     fullTime: { type: String, required: true },
     salary: { type: String, required: true },
     description: { type: String, required: true },
+}, {
+    timestamps: true
 });
 
 export const JobModel = models.Job || model('Job', JobSchema);
